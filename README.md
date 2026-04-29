@@ -1,24 +1,43 @@
-# 🔄 Promob Version Manager 
+<div align="center">
 
-**Gerencie e alterne entre diferentes versões do Promob de forma instantânea e automatizada.**  
-*Desenvolvido em Java 11 com JavaFX e interface moderna AtlantaFX.*
+# 🔄 Promob Version Manager
+
+### Gerencie e alterne entre diferentes versões do Promob de forma instantânea e automatizada
+
+[![Java](https://img.shields.io/badge/Java-11-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.oracle.com/java/)
+[![JavaFX](https://img.shields.io/badge/JavaFX-13-blue?style=for-the-badge&logo=java&logoColor=white)](https://openjfx.io/)
+[![AtlantaFX](https://img.shields.io/badge/UI-AtlantaFX-8A2BE2?style=for-the-badge&logo=css3&logoColor=white)](https://github.com/mkpaz/atlantafx)
+[![Maven](https://img.shields.io/badge/Maven-3.6+-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white)](https://maven.apache.org/)
+
+</div>
 
 ---
 
-## 🟢 Status do Projeto
-> **MVP Concluído** 🚀  
-> O projeto está funcional e pronto para uso em ambientes de desenvolvimento e produção local para agilizar o setup de versões.
+## 📸 Preview
+
+<div align="center">
+  <img src="assets/preview.jpg" alt="Interface do Promob Version Manager" width="100%">
+</div>
 
 ---
 
-## 🏗️ Arquitetura / Visão Técnica
-A aplicação foi construída seguindo o padrão **MVC (Model-View-Controller)** para desacoplamento da lógica de interface e operações de IO.
+## 📌 Sobre o Projeto
 
-- **Frontend**: JavaFX com FXML para definição de layouts.
-- **Estilização**: CSS moderno utilizando a biblioteca **AtlantaFX** para um visual "Premium" e suporte a temas.
-- **Gerenciamento de Arquivos**: Utiliza a API `java.nio.file` para caminhada em árvore (`FileTree`) permitindo cópias e deleções recursivas eficientes.
-- **Multithreading**: Implementação de `javafx.concurrent.Task` para garantir que a interface permaneça responsiva durante operações pesadas de IO.
-- **Persistência**: Uso de `java.util.prefs.Preferences` para memorizar os últimos caminhos selecionados pelo usuário.
+O **Promob Version Manager** é uma ferramenta utilitária desenvolvida para facilitar a rotina de profissionais que utilizam o ecossistema Promob e precisam alternar rapidamente entre diferentes builds e versões do sistema. A aplicação automatiza o processo de substituição de arquivos, garantindo que o ambiente esteja pronto para uso em segundos.
+
+Construído com foco em **produção e produtividade**, o projeto incorpora:
+
+- ✅ **Interface "Premium"** com AtlantaFX, fugindo do visual padrão Java Desktop
+- ✅ **Operações IO Assíncronas** para manter a interface responsiva durante cópias pesadas
+- ✅ **Persistência Inteligente** de caminhos locais via Java Preferences
+- ✅ **Limpeza Automática** de diretórios de cache (`structures`) para evitar conflitos
+- ✅ **Segurança Local** operando 100% offline e sem dependências externas críticas
+
+---
+
+## 🏛️ Arquitetura
+
+A aplicação segue o padrão **MVC (Model-View-Controller)**, garantindo a separação clara entre a lógica de interface (JavaFX/FXML) e o motor de manipulação de arquivos.
 
 ```mermaid
 graph TD
@@ -31,102 +50,114 @@ graph TD
     B -->|Reflete na UI| A
 ```
 
----
-
-## 🛠️ Stack Técnica
-- **Linguagem:** Java 11
-- **Framework UI:** JavaFX 13
-- **Tema:** AtlantaFX (Nord Light/Dark)
-- **Ícones:** Ikonli (Material Design 2)
-- **Build Tool:** Maven
-- **Gerenciamento de Dependências:** Maven Central
+### Componentes Principais
+- **Frontend**: JavaFX + AtlantaFX (CSS Moderno)
+- **Engine**: API `java.nio.file` para recursividade de alta performance
+- **Threading**: `javafx.concurrent.Task` para gestão de background workers
 
 ---
 
-## ✨ Funcionalidades Principais
-- [x] **Seleção de Origem:** Define a pasta raiz onde estão armazenadas todas as versões do sistema.
-- [x] **Seleção de Destino:** Identifica automaticamente a pasta de instalação do Promob.
-- [x] **Listagem Dinâmica:** Detecta e lista subpastas de versão em tempo real.
-- [x] **Limpeza Inteligente:** Remove a pasta `structures` no destino antes da cópia para evitar conflitos de cache/versão.
-- [x] **Cópia de Alta Performance:** Substitui os arquivos de sistema de forma recursiva.
-- [x] **Dark Mode:** Alternância entre tema claro e escuro com um clique.
-- [x] **Feedback Visual:** Barra de progresso e status em tempo real durante a operação.
+## ✨ Funcionalidades
+
+- [x] **Seleção de Origem/Destino:** Interface intuitiva para mapeamento de diretórios.
+- [x] **Listagem em Tempo Real:** Detecção automática de subpastas de versão.
+- [x] **Limpeza Inteligente:** Remoção da pasta `structures` antes da atualização.
+- [x] **Substituição Recursiva:** Cópia completa da pasta `System` de forma otimizada.
+- [x] **Dark/Light Mode:** Suporte completo a temas dinâmicos.
+- [x] **Feedback Visual:** Barra de progresso e indicadores de status.
 
 ---
 
 ## 🖥️ Interface e Uso
-Como se trata de uma aplicação Desktop, não possui endpoints REST. A interação é feita via formulário intuitivo:
 
-1. **Configuração de Caminhos**: Selecione uma vez e a aplicação lembrará na próxima vez.
-2. **Escolha da Versão**: Selecione no dropdown a versão desejada.
-3. **Execução**: Clique em "Trocar Versão" e acompanhe a barra de progresso.
+A interação é simples e direta, focada no fluxo de trabalho do usuário:
+
+1. **Configuração**: Selecione a pasta raiz das versões e a pasta de instalação do Promob.
+2. **Seleção**: Escolha a versão desejada na lista suspensa (dropdown).
+3. **Execução**: Clique em **"Trocar Versão"** e aguarde a conclusão automática.
+
+> [!TIP]
+> Os caminhos selecionados são salvos automaticamente e estarão preenchidos na próxima inicialização!
 
 ---
 
 ## 🚀 Como rodar localmente
 
 ### Pré-requisitos
-- **JDK 11** ou superior instalado.
-- **Maven 3.6+** configurado no PATH.
+- **JDK 11** ou superior
+- **Maven 3.6+**
 
-### Passos
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/seu-usuario/TrocarVersaoPromob.git
-   ```
-2. Entre no diretório do projeto:
-   ```bash
-   cd TrocarVersaoPromob/change-version
-   ```
-3. Execute via Maven:
-   ```bash
-   mvn clean javafx:run
-   ```
+### Passos para Execução
+```bash
+# 1. Clone o repositório
+git clone https://github.com/betolara1/Promob-Version-Manager-.git
+
+# 2. Acesse o diretório do projeto
+cd TrocarVersaoPromob/change-version
+
+# 3. Execute via Maven
+mvn clean javafx:run
+```
 
 ---
 
-## ⚙️ Configurações / Variáveis de Ambiente
-O projeto não utiliza arquivos `.env`. As configurações de diretórios são armazenadas no registro do usuário (Windows Registry via `java.util.prefs`), garantindo que seus caminhos locais sejam mantidos sem necessidade de re-configuração manual.
+## 🔒 Segurança e Configurações
 
----
-
-## 🔒 Segurança
-- **Local Only:** A aplicação não realiza requisições externas, operando 100% offline.
-- **File System:** Requer permissões de escrita nas pastas selecionadas (Origem e Destino).
-- **Sem Dependências Críticas:** Focada em bibliotecas de UI e utilitários padrão Java.
+- **Offline por Design:** Nenhuma requisição externa é feita, protegendo seus dados e segredos industriais.
+- **Permissões:** Requer acesso de leitura/escrita nos diretórios selecionados.
+- **Armazenamento:** Configurações salvas no Registro do Windows (via `java.util.prefs`), sem necessidade de arquivos `.env` ou bancos de dados locais.
 
 ---
 
 ## 📂 Estrutura do Projeto
+
 ```text
 change-version/
-├── src/
-│   ├── main/
-│   │   ├── java/com/betolara1/
-│   │   │   ├── App.java           # Entry point e gestão de temas
-│   │   │   └── FileController.java # Lógica principal e IO
-│   │   └── resources/com/betolara1/
-│   │       ├── primary.fxml       # Layout da interface
-│   │       └── style.css          # Customizações visuais
-└── pom.xml                        # Configurações Maven
+ ├── src/
+ │   ├── main/
+ │   │   ├── java/com/betolara1/
+ │   │   │   ├── App.java           # Entry point e gestão de temas
+ │   │   │   └── FileController.java # Lógica principal e IO
+ │   │   └── resources/com/betolara1/
+ │   │       ├── primary.fxml       # Layout da interface
+ │   │       └── style.css          # Customizações visuais
+ └── pom.xml                        # Dependências Maven
 ```
 
 ---
 
 ## 🎯 Próximos Passos
-- [ ] Implementar sistema de logs em arquivo para auditoria de falhas.
-- [ ] Adicionar botão para "Abrir Pasta de Destino" após a conclusão.
-- [ ] Criar instalador executável (.exe) usando `jpackage`.
-- [ ] Opção de Backup Automático da versão atual antes da substituição.
+
+- [ ] Sistema de logs em arquivo para auditoria.
+- [ ] Atalho rápido para "Abrir Pasta de Destino".
+- [ ] Empacotamento Nativo (.exe) via `jpackage`.
+- [ ] Backup automático da versão anterior.
 
 ---
 
-## 📸 Screenshots / Visual
-*(Para recrutadores: Esta aplicação utiliza a biblioteca AtlantaFX para entregar uma experiência de usuário moderna e profissional, fugindo do visual padrão do Windows 95 frequentemente associado ao Java Desktop.)*
+## 🛠️ Stack Tecnológica
 
-> [!TIP]
-> **Dica de Design:** Ao rodar a aplicação, experimente alternar para o Dark Mode para ver a adaptação completa da paleta de cores.
+| Tecnologia | Versão | Finalidade |
+|-----------|--------|------------|
+| Java | 11 | Linguagem e Runtime |
+| JavaFX | 13 | Framework de Interface Gráfica |
+| AtlantaFX | 2.0.1 | CSS Moderno e Temas |
+| Ikonli | — | Pacotes de Ícones |
+| Maven | 3.6+ | Gerenciamento de Dependências |
 
 ---
-**Desenvolvido por Roberto Lara.**  
-*Transformando fluxos manuais em automações elegantes.*
+
+## 👨‍💻 Autor
+
+Desenvolvido por **Roberto Lara** — Backend & Desktop Developer
+
+[![GitHub](https://img.shields.io/badge/GitHub-betolara1-181717?style=for-the-badge&logo=github)](https://github.com/betolara1)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Roberto_Lara-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/roberto-lara-dev/)
+
+---
+
+<div align="center">
+
+**Promob Version Manager** — Transformando fluxos manuais em automações elegantes.
+
+</div>
