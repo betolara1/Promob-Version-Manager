@@ -3,3 +3,6 @@
 
 # Contar apenas arquivos com extensão .java nas estatísticas
 *.java linguist-vendored=false
+
+*.c linguist-vendored
+*.h linguist-vendored
