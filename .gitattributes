@@ -1,0 +1,5 @@
+# Ocultar todos os arquivos das estatísticas de linguagens do GitHub (marca como vendored)
+* linguist-vendored
+
+# Contar apenas arquivos com extensão .java nas estatísticas
+*.java linguist-vendored=false
